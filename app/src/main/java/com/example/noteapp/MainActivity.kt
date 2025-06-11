@@ -36,7 +36,6 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             NoteAppTheme {
-                // Отримуємо ViewModel з фабрикою, яка знає про контекст
                 val viewModel: NoteViewModel = viewModel(
                     factory = NoteViewModelFactory(application)
                 )

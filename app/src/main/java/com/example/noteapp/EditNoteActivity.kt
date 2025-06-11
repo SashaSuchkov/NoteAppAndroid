@@ -23,7 +23,6 @@ class EditNoteActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
 
-        // Отримуємо ID редагованої нотатки
         val noteId = intent.getIntExtra("note_id", -1)
 
         setContent {
@@ -48,12 +47,10 @@ fun EditNoteScreen(
     viewModel: NoteViewModel,
     onNoteUpdated: () -> Unit
 ) {
-    // Спершу завантажуємо існуючу нотатку
     val noteEntity by produceState<NoteEntity?>(initialValue = null, noteId) {
         value = viewModel.getNoteById(noteId)
     }
 
-    // Локальні стани полів, оновлюються після завантаження
     var title by remember(noteEntity) { mutableStateOf(noteEntity?.title.orEmpty()) }
     var content by remember(noteEntity) { mutableStateOf(noteEntity?.content.orEmpty()) }
 
